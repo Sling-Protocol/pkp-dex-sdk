@@ -3,7 +3,7 @@ import fs from "fs";
 
 const code = await fs.readFile("../getSignatureShare.js");
 
-const runGetSignatureShare = async (authSig, transactionDigest, keyId, sigName) => {
+const runGetSignatureShare = async (authSig, message, keyId, sigName) => {
   const litNodeClient = new LitJsSdk.LitNodeClient({ litNetwork: "serrano" });
   await litNodeClient.connect();
 
@@ -13,7 +13,7 @@ const runGetSignatureShare = async (authSig, transactionDigest, keyId, sigName) 
     jsParams: {
       keyId,
       sigName,
-      toSign: transactionDigest,
+      toSign: message,
     }
   });
 

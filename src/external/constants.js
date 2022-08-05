@@ -12,4 +12,6 @@ const addresses = {
   "mainnet": mainnetAddresses
 }
 
-module.exports = addresses;
+module.exports = {
+  addresses
+};
