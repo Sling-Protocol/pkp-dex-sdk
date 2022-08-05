@@ -85,12 +85,12 @@ const executeOneInchSwap = async () => {
   const swapDescription = {
     srcToken: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH
     dstToken: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", // WBTC
-    srcReceiver: 3000, // 0.3%
-    dstReceiver: recipient,
-    amount: Date.now() + (60 * 5) // now + 5 minutes,
+    srcReceiver: "", 
+    dstReceiver: "",
+    amount: 0,
     minReturnAmount: 0,
     flags: 0,
-    permit: 0
+    permit: ""
   };
 
   const tx = {

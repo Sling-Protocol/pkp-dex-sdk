@@ -1,7 +1,11 @@
 /// Lit Action that signs a digest and returns a signature share.
+/// This Lit Action will be used to sign transactions interacting with
+/// DEXes created by users of the SDK.
+/// toSign (the transaction digest), keyId, and sigName are all
+/// required parameters.
 
-const go = async () => {
+const signMessage = async () => {
   const sigShare = await LitActions.signEcdsa({ toSign, keyId, sigName });
 };
 
-go();
+signMessage();
