@@ -8,8 +8,8 @@ To make the SDK as modular as possible, there are a few different components.
 - Methods to interact with the Lit Action to acquire a transaction signature.
 
 The developer should follow these steps to start interacting with DEXes with their PKP (boilerplate found in `src/test/sdkTest.js`):
-- Generate or get input for the swap details according to the chosen DEX's specification
-  - Parameters such as input token, output token, input amount, deadline, etc.)
+- Acquire user input or generate the token swap details according to the chosen DEX's specification
+  - Parameters such as input token, output token, input amount, deadline, etc. are usually needed
 - Create the raw transaction object with the encoded calldata
 - Compute the transaction's signature by interacting with the Lit Action
 - After the signature is retrieved, broadcast the signed transaction with a generic web3 provider.
