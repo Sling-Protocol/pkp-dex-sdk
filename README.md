@@ -1,7 +1,7 @@
 # pkp-dex-sdk
 SDK to make swapping ERC-20 tokens easy with Lit Actions and PKPs.
 
-To make the SDK as modular as possible, there are several different components that are needed.
+To make the SDK as modular as possible, there are a few different components.
 
 - Methods to generate transaction data to interact with several DEXes.
 - A Lit Action that uses the PKP to sign an arbitrary message.
