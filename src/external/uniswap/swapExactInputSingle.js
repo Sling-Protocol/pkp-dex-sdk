@@ -25,3 +25,7 @@ const generateExactInputSingleCalldata(
     sqrtPriceLimitX96
   ]]);
 }
+
+module.exports = {
+  generateExactInputSingleCalldata
+}

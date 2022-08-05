@@ -1,4 +1,4 @@
-const addresses = {
+const mainnetAddresses = {
   "uniswap": {
     "v3": {
       "SwapRouter": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
@@ -7,3 +7,9 @@ const addresses = {
     }
   }
 }
+
+const addresses = {
+  "mainnet": mainnetAddresses
+}
+
+module.exports = addresses;

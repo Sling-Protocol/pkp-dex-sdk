@@ -18,4 +18,10 @@ const runGetSignatureShare = async (authSig, transactionDigest, keyId, sigName) 
   });
 
   console.log(signatures);
+
+  return signatures;
+}
+
+module.exports = {
+  runGetSignatureShare
 }
