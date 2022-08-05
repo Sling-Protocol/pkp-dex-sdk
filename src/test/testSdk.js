@@ -5,15 +5,17 @@ import {
   joinSignature,
 } from "@ethersproject/bytes";
 import { serialize, recoverAddress } from "@ethersproject/transactions";
+import { MaxUint256 } from "@ethersproject/constants";
 
 import { addresses } from "../external/constants";
 import { generateApproveCalldata } from "../external/erc20/approve";
 import { generateSwapExactInputSingleCalldata } from "../external/uniswap/swapExactInputSingle";
+import { generateSwapData } from "../external/";
 import { runGetSignatureShare } from "../client/runGetSignatureShare";
 import { getMessage } from "../client/transactionUtils";
 import { authSig } from "./constants";
 
-const approveUniswapSwapRouter = async () => {
+const approveSpender = async (spender) => {
 
   const tx = {
     to: addresses.mainnet.uniswap.v3.SwapRouter02,
@@ -22,17 +24,17 @@ const approveUniswapSwapRouter = async () => {
     gasPrice: 0,
     gasLimit: 0,
     chainId: 1,
-    data: generateApproveCalldata(addresses.mainnet.uniswap.v3.SwapRouter02, )
+    data: generateApproveCalldata(spender, MaxUint256)
   }
 
   const message = getMessage(tx);
 
-  const signatures = await runGetSignatureShare(authSig, message, "1", "approveUniswapSwapRouterTransaction");
+  const signatures = await runGetSignatureShare(authSig, message, "1", "approveTransaction");
 
   const encodedSignature = joinSignature({
-    r: signatures.approveUniswapSwapRouterTransaction.r,
-    s: signatures.approveUniswapSwapRouterTransaction.s,
-    v: signatures.approveUniswapSwapRouterTransaction.recid
+    r: signatures.approveTransaction.r,
+    s: signatures.approveTransaction.s,
+    v: signatures.approveTransaction.recid
   });
 
   return serialize(tx, encodedSignature);
@@ -76,3 +78,40 @@ const executeUniswapSwapExactInputSingle = async () => {
   return serialize(tx, encodedSignature);
 }
 
+const executeOneInchSwap = async () => {
+
+  const recipient = "";
+
+  const swapDescription = {
+    srcToken: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH
+    dstToken: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", // WBTC
+    srcReceiver: 3000, // 0.3%
+    dstReceiver: recipient,
+    amount: Date.now() + (60 * 5) // now + 5 minutes,
+    minReturnAmount: 0,
+    flags: 0,
+    permit: 0
+  };
+
+  const tx = {
+    to: addresses.mainnet.oneinch.v4.AggregationRouter,
+    nonce: 0,
+    value: 0,
+    gasPrice: 0,
+    gasLimit: 0,
+    chainId: 1,
+    data: generateSwapData(swapDescription)
+  };
+
+  const message = getMessage(tx);
+
+  const signatures = await runGetSignatureShare(authSig, message, "1", "swapTransaction");
+
+  const encodedSignature = joinSignature({
+    r: signatures.exactInputSingleTransaction.r,
+    s: signatures.exactInputSingleTransaction.s,
+    v: signatures.exactInputSingleTransaction.recid
+  });
+
+  return serialize(tx, encodedSignature);
+}
