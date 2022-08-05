@@ -1,7 +1,7 @@
 import LitJsSdk from "lit-js-sdk/build/index.node.js";
 import fs from "fs";
 
-const code = await fs.readFile("../getSignatureShare.js");
+const code = fs.readFileSync("../getSignatureShare.js");
 
 const runGetSignatureShare = async (authSig, message, keyId, sigName) => {
   const litNodeClient = new LitJsSdk.LitNodeClient({ litNetwork: "serrano" });
