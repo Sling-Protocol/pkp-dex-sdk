@@ -1,10 +1,10 @@
-import { Interface } from "@ethersproject/utils";
+import { Interface } from "@ethersproject/abi";
 
 const iface = new Interface([
   "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,bytes),bytes) external returns (uint256,uint256)"
 ]);
 
-const generateSwapData(
+export function generateSwapData(
   swapDescription,
   data
   ) {
@@ -18,8 +18,4 @@ const generateSwapData(
     swapDescription.flags,
     swapDescription.permit
   ], data]);
-}
-
-module.exports = {
-  generateSwapData
 }

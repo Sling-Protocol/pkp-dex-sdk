@@ -10,10 +10,11 @@ import { MaxUint256 } from "@ethersproject/constants";
 import { addresses } from "../external/constants";
 import { generateApproveCalldata } from "../external/erc20/approve";
 import { generateSwapExactInputSingleCalldata } from "../external/uniswap/swapExactInputSingle";
-import { generateSwapData } from "../external/";
+import { generateSwapData } from "../external/oneinch/swap";
 import { runGetSignatureShare } from "../client/runGetSignatureShare";
 import { getMessage } from "../client/transactionUtils";
 import { authSig } from "./constants";
+
 
 const approveSpender = async (spender) => {
 
@@ -49,7 +50,7 @@ const executeUniswapSwapExactInputSingle = async () => {
     tokenOut: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", // WBTC
     fee: 3000, // 0.3%
     recipient: recipient,
-    deadline: Date.now() + (60 * 5) // now + 5 minutes,
+    deadline: Date.now() + (60 * 5),
     amountIn: 0,
     amountOutMinimum: 0,
     sqrtPriceLimitX96: 0
@@ -115,3 +116,5 @@ const executeOneInchSwap = async () => {
 
   return serialize(tx, encodedSignature);
 }
+
+console.log("Running tests...");

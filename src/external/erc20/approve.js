@@ -1,10 +1,10 @@
-import { Interface } from "@ethersproject/utils";
+import { Interface } from "@ethersproject/abi";
 
 const iface = new Interface([
   "function approve(address,uint256) returns (bool)",
 ]);
 
-const generateApproveCalldata(
+export function generateApproveCalldata (
   spender,
   amount
   ) {
@@ -12,8 +12,4 @@ const generateApproveCalldata(
     spender,
     amount,
   ]]);
-}
-
-module.exports = {
-  generateApproveCalldata
 }

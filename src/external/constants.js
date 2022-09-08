@@ -13,10 +13,6 @@ const mainnetAddresses = {
   }
 }
 
-const addresses = {
+export const addresses = {
   "mainnet": mainnetAddresses
 }
-
-module.exports = {
-  addresses
-};

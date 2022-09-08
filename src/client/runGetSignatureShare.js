@@ -3,7 +3,7 @@ import fs from "fs";
 
 const code = fs.readFileSync("../getSignatureShare.js");
 
-const runGetSignatureShare = async (authSig, message, keyId, sigName) => {
+export const runGetSignatureShare = async (authSig, message, publicKey, sigName) => {
   const litNodeClient = new LitJsSdk.LitNodeClient({ litNetwork: "serrano" });
   await litNodeClient.connect();
 
@@ -11,7 +11,7 @@ const runGetSignatureShare = async (authSig, message, keyId, sigName) => {
     code,
     authSig,
     jsParams: {
-      keyId,
+      publicKey,
       sigName,
       toSign: message,
     }
@@ -20,8 +20,4 @@ const runGetSignatureShare = async (authSig, message, keyId, sigName) => {
   console.log(signatures);
 
   return signatures;
-}
-
-module.exports = {
-  runGetSignatureShare
 }

@@ -1,4 +1,7 @@
-const authSig = {
+import * as dotenv from "dotenv";
+dotenv.config();
+
+export const authSig = {
   sig: "0x2bdede6164f56a601fc17a8a78327d28b54e87cf3fa20373fca1d73b804566736d76efe2dd79a4627870a50e66e1a9050ca333b6f98d9415d8bca424980611ca1c",
   derivedVia: "web3.eth.personal.sign",
   signedMessage:
@@ -6,6 +9,5 @@ const authSig = {
   address: "0x9D1a5EC58232A894eBFcB5e466E3075b23101B89",
 };
 
-module.exports = {
-  authSig
-}
+export const PKP_PUBLIC_KEY = process.env.PKP_PUBLIC_KEY;
+export const PKP_OWNER_PRIVATE_KEY = process.env.PKP_OWNER_PRIVATE_KEY;

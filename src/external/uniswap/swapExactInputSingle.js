@@ -1,10 +1,10 @@
-import { Interface } from "@ethersproject/utils";
+import { Interface } from "@ethersproject/abi";
 
 const iface = new Interface([
   "function exactInputSingle(tuple(address,address,uint24,address,uint256,uint256,uint256,uint160)) external payable returns (uint256)"
 ]);
 
-const generateSwapExactInputSingleCalldata(
+export function generateSwapExactInputSingleCalldata(
   exactInputSingleData
   ) {
   return iface.encodeFunctionData("exactInputSingle", [[
@@ -17,8 +17,4 @@ const generateSwapExactInputSingleCalldata(
     exactInputSingleData.amountOutMinumum,
     exactInputSingleData.sqrtPriceLimitX96
   ]]);
-}
-
-module.exports = {
-  generateSwapExactInputSingleCalldata
 }

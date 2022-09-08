@@ -1,6 +1,16 @@
 {
+  "name": "pkp-dex-sdk",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
+    "dotenv": "^16.0.2",
     "ethers": "^5.6.9",
     "lit-js-sdk": "^1.1.207"
+  },
+  "scripts": {
+    "build": "node esbuild.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.39"
   }
 }
