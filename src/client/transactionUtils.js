@@ -1,11 +1,13 @@
 import { serialize } from "@ethersproject/transactions";
 import { arrayify } from "@ethersproject/bytes";
-import { keccak256 } from "js-sha3";
+import { keccak256 } from "@ethersproject/keccak256"
 
+/// Computes the transaction message that will be signed.
 export const getMessage = (transaction) => {
-	return keccak256.digest(arrayify(serialize(transaction)));
+	return keccak256(arrayify(serialize(transaction)));
 }
 
-export const sendSignedTransaction = async (provider, signedTransaction) => {
+/// Broadcasts a serialized signed transaction
+export const sendSignedTransaction = async (signedTransaction, provider) => {
   return await provider.sendTransaction(signedTransaction);
 };

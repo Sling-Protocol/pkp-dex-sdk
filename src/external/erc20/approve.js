@@ -8,8 +8,8 @@ export function generateApproveCalldata (
   spender,
   amount
   ) {
-  return iface.encodeFunctionData("approve", [[
+  return iface.encodeFunctionData("approve", [
     spender,
     amount,
-  ]]);
+  ]);
 }

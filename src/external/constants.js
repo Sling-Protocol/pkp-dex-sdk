@@ -1,3 +1,5 @@
+/// An object to store commonly used DEX contract addresses. 
+/// Will be added to as more integrations are added.
 const mainnetAddresses = {
   "uniswap": {
     "v3": {
@@ -13,6 +15,15 @@ const mainnetAddresses = {
   }
 }
 
+const celoAddresses = {
+  "uniswap": {
+    "v3": {
+      "SwapRouter02": "0x5615CDAb10dc425a742d643d949a7F474C01abc4"
+    }
+  }
+}
+
 export const addresses = {
-  "mainnet": mainnetAddresses
+  "mainnet": mainnetAddresses,
+  "celo": celoAddresses
 }
